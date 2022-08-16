@@ -1,0 +1,28 @@
+.black-white-text {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+  color: #fff;
+  font-weight: bolder;
+  text-shadow: #000 -1px 0 0, #763c12 0 -1px 0, #5d2b08 1px 0 0, #1d1515 0 1px 0;
+  height: 20px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 14px;
+  padding: 2px 4px;
+  background: rgba(0,0,0,0.31);
+}
+.unit-icon {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 0 2px #000;
+  border-radius: 4px;
+  margin: 2px;
+  overflow: hidden;
+}
