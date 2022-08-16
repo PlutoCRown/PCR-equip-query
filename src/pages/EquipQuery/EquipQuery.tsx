@@ -50,8 +50,7 @@ export const EquipQuery = () => {
   }
   list.sort((a,b)=> Number(a.quality) - Number(b.quality))
   const [dataList,setData] = useState(list)
-  // const [selectedList,setSelectedList] = useState(list)
-  const [TableData,setTableData] = useState(MapOut.data.slice(1,10))
+  const [TableData,setTableData] = useState(MapOut.data)
 
   const selectEquip = (item:equip) => {
     item.selected = true
@@ -63,14 +62,13 @@ export const EquipQuery = () => {
     updateSelectList()
   }
   const updateSelectList = () => {
-    console.log("SELECT",dataList.filter(item=>item.selected));
-
     TableData.forEach(item => { // 更新推荐值
       let count = 0
       item.output.forEach(i=>{
         count = count + (dataList.filter(item=>item.selected)
           .filter(e=>e.name===i.equip).length === 1 ? Number(i.odds.split("%")[0]) : 0)
       })
+      if(item.level.match('H')) count = count / 2
       item.recommand = count
     })
     setTableData([...TableData])
@@ -113,7 +111,7 @@ export const EquipQuery = () => {
 
   return (
     <>
-      <h1>公主连接装备查询</h1>
+      <h1>公主连结装备查询</h1>
       <h2>选择你需要的装备，查询最适合的关卡</h2>
       <div style={{ border:"5px solid black" }}>
         {
