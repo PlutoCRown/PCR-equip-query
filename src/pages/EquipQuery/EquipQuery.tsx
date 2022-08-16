@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Tabs, Table, Button } from 'antd';
+import { Tabs, Table, Button, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import './EquipQuery.css'
 const data:impType = require('../../data/PCRdata.json')
@@ -62,6 +62,7 @@ export const EquipQuery = () => {
     updateSelectList()
   }
   const updateSelectList = () => {
+
     TableData.forEach(item => { // 更新推荐值
       let count = 0
       item.output.forEach(i=>{
@@ -113,7 +114,7 @@ export const EquipQuery = () => {
     <>
       <h1>公主连结装备查询</h1>
       <h2>选择你需要的装备，查询最适合的关卡</h2>
-      <div style={{ border:"5px solid black" }}>
+      <div style={{ border:"5px solid black",width:"90vw", padding:"10px"}}>
         {
           dataList.filter(item=>item.selected).map(item=>(
             <div key={item.name} className='unit-icon' onClick={()=>unselect(item)}>
@@ -126,6 +127,7 @@ export const EquipQuery = () => {
       <hr></hr>
       <Tabs defaultActiveKey="1" centered onChange={updateSelectList}>
         <TabPane tab="选择装备" key="1">
+          <div style={{width:"90vw"}}>
           {
             dataList.filter(item=>!item.selected).map(item=>(
               <div key={item.name} className='unit-icon' onClick={()=>selectEquip(item)}>
@@ -134,8 +136,10 @@ export const EquipQuery = () => {
               </div>
             ))
           }
+          </div>
         </TabPane>
         <TabPane tab="查看结果" key="2">
+          <h3 style={{marginLeft:"780px"}}><b>记得点排序喵！👇</b> </h3>
           <Table columns={columns} dataSource={TableData} />
         </TabPane>
 
